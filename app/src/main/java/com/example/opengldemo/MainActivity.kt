@@ -14,6 +14,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.example.opengldemo.databinding.ActivityMainBinding
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             //2.配置渲染的表面rendering surface
             glSurfaceView.setEGLContextClientVersion(2) //Request an OpenGL ES 2.0 compatible context
             //3.设置自定义的render渲染器
-            glSurfaceView.setRenderer(FirstOpenGLProjectRenderer())
+            glSurfaceView.setRenderer(AirHockeyRenderer(this))
             rendererSet = true
         } else {
             /*
@@ -64,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         }
         //最后展示glSurfaceView
         setContentView(glSurfaceView)
+        MainScope().launch {  }
     }
 
     override fun onPause() {
